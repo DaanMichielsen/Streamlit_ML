@@ -52,7 +52,7 @@ st.markdown("- Age\n- Gender\n- Polyuria\n- Polydipsia\n- sudden weight loss\n- 
 
 st.header("The algorithms:robot_face:", divider='violet')
 st.markdown("I compared 1 baseline algorithm to 2 new algorithms I have not used before. For the **baseline** I chose the **decision tree algorithm**. For the other 2 algorithms I went with **SVC** and **AdaBoostClassifier**.")
-st.markdown("In order to train the data I had to perform some cleaning, encoding and normalizing which left me with this result:")
+st.markdown("In order to train the model I had to perform some cleaning, encoding and normalizing which left me with this result:")
 df_encoded = encode_data(df)
 
 records_shown_encoded = 10  # default number of records to show
@@ -113,6 +113,7 @@ if st.button(":white[Fit model]", type='secondary', use_container_width=True):
         st.header("Results/Metrics:bar_chart:", divider='violet')
         st.subheader(f"Parameters:")
         st.markdown(f'max depth=<span style="color:blue">{max_depth}</span> | kernel=<span style="color:green">{kernel}</span> | estimators=<span style="color:red">{n_estimators}</span>', unsafe_allow_html=True)
+        toast = st.toast("Fitting models...")
         clf = DecisionTreeClassifier(random_state=42, criterion='entropy', max_depth=max_depth)
         svc = SVC(random_state=42, kernel=kernel)
         base_estimator = DecisionTreeClassifier(max_depth=1)
@@ -128,6 +129,7 @@ if st.button(":white[Fit model]", type='secondary', use_container_width=True):
             st.markdown("### Decision Tree", help="This image is preprocessed because the needed package does not work on streamlit but I wanted to include it anyway")
             st.image(image=image)
             st.caption(f"Image of decision tree with max depth of {max_depth}")
+        toast.toast("Predicting...")
         with tab2:
             st.subheader("Prediction results")
             y_pred_decision_tree = clf.predict(X_test)
@@ -179,7 +181,7 @@ if st.button(":white[Fit model]", type='secondary', use_container_width=True):
             # Display the bar chart
             st.pyplot(fig, use_container_width=True)
             st.caption(f"Bar chart comparing the prediction vs. the real values")
-
+        toast.toast("Calculating metrics...")
         decision_metrics = []
         svc_metrics = []
         adaboost_metrics = []
@@ -259,6 +261,7 @@ if st.button(":white[Fit model]", type='secondary', use_container_width=True):
             st.subheader("Overall Metrics")
             # Display the dataframe
             st.dataframe(metrics_df, use_container_width=True)
+        toast.toast("Plotting results...")
         with tab4:
             st.subheader("Confusion Matrix")
             # Define the confusion matrices for the three classifiers
@@ -337,3 +340,4 @@ if st.button(":white[Fit model]", type='secondary', use_container_width=True):
             ax.legend(['Decision tree','SVC', 'AdaBoost'])
             st.pyplot(fig)
             st.caption(f"Precision-recall curve for each algorithm", help="A precision-recall curve is a plot of precision (y-axis) versus recall (x-axis) for different classification thresholds. It shows how changing the classification threshold affects the tradeoff between false positives and false negatives. A high area under the curve represents both high recall and high precision, indicating a model that returns accurate results for the majority of classes it selects.")
+        toast.toast("Benchmark completed", icon="✅")
