@@ -125,7 +125,7 @@ if st.button(":white[Fit model]", type='secondary', use_container_width=True):
         image = Image.open(filename) 
         tab1, tab2, tab3, tab4, tab5, tab6 = st.tabs(["Decision Tree","Prediction vs Test","Overall Metrics","Confusion Matrix","ROC Curve","Precision-Recall Curve"])
         with tab1:
-            st.markdown("### Decision Tree")
+            st.markdown("### Decision Tree", helper="This image is preprocessed because the needed package does not work on streamlit but I wanted to include it anyway")
             st.image(image=image)
             st.caption(f"Image of decision tree with max depth of {max_depth}")
         with tab2:
