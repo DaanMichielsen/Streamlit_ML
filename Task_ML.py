@@ -99,7 +99,7 @@ st.markdown("### parameter tuning:gear:")
 col1, col2, col3 = st.columns(3)
 with col1:
     st.markdown("### :blue[Decision tree]")
-    max_depth = st.slider('Select max depth:', min_value=1, max_value=10, step=1, value=10, help="Spoiler, the tree does not go past 10 hence 10 as max input")
+    max_depth = st.slider('Select max depth:', min_value=1, max_value=8, step=1, value=8, help="Spoiler, the tree does not go past 8 hence 8 as max input")
 with col2:
     st.markdown("### :green[SVC]")
     kernel_options = ['linear', 'poly', 'rbf', 'sigmoid']
