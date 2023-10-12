@@ -123,7 +123,6 @@ if st.button(":white[Fit model]", type='secondary', use_container_width=True):
 
         filename = f"graph_{max_depth}.png"
         image = Image.open(filename) 
-        image = Image.open(BytesIO(graph.create_png()))
         tab1, tab2, tab3, tab4, tab5, tab6 = st.tabs(["Decision Tree","Prediction vs Test","Overall Metrics","Confusion Matrix","ROC Curve","Precision-Recall Curve"])
         with tab1:
             st.markdown("### Decision Tree")
