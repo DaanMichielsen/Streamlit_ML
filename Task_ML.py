@@ -12,7 +12,6 @@ import matplotlib.pyplot as plt
 import streamlit as st
 from io import StringIO, BytesIO
 from IPython.display import Image  
-from sklearn.tree import export_graphviz
 import pydotplus
 from PIL import Image
 
@@ -122,10 +121,8 @@ if st.button(":white[Fit model]", type='secondary', use_container_width=True):
         svc.fit(X_train, y_train)
         adabc.fit(X_train, y_train)
 
-        dot_data = StringIO()
-        export_graphviz(clf, out_file = dot_data, filled = True, rounded = True,
-                        special_characters = True, feature_names = feature_cols, class_names=['Negative','Positive'])
-        graph = pydotplus.graph_from_dot_data(dot_data.getvalue())  
+        filename = f"graph_{max_depth}.png"
+        image = Image.open(filename) 
         image = Image.open(BytesIO(graph.create_png()))
         tab1, tab2, tab3, tab4, tab5, tab6 = st.tabs(["Decision Tree","Prediction vs Test","Overall Metrics","Confusion Matrix","ROC Curve","Precision-Recall Curve"])
         with tab1:
