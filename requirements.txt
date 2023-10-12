@@ -7,4 +7,3 @@ streamlit
 pydotplus
 Pillow
 ipython
-diabetes_data_upload.csv
