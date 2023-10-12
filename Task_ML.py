@@ -39,7 +39,7 @@ st.header("The dataset:bookmark_tabs:", divider='violet')
 
 st.markdown("### [Early stage diabetes risk prediction dataset.](https://archive.ics.uci.edu/dataset/529/early+stage+diabetes+risk+prediction+dataset) \nI chose this dataset because I can grasp the contents and I understand what I have to predict. It also complies with the minimum requirements for a dataset. I chose to perform **classification**.")
 
-df = pd.read_csv('early_stage_diabetes_risk_prediction_dataset/diabetes_data_upload.csv', delimiter=',')
+df = pd.read_csv('diabetes_data_upload.csv', delimiter=',')
 records_shown = 10
 records_shows_options = [10, 20, 30, 40, 50]  # options for the selectbox
 
