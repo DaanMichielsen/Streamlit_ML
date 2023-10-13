@@ -34,6 +34,10 @@ def embed_pdf(pdf_path):
     pdf_display = F'<embed src="data:application/pdf;base64,{base64_pdf}" width="700" height="1000" type="application/pdf">'
     st.markdown(pdf_display, unsafe_allow_html=True)
 
+pdf_path = "ML_Benchmark_Daan_Michielsen.pdf"
+with open(pdf_path, "rb") as f:
+        pdf_bytes = f.read()
+
 # st.set_page_config(layout='wide')
 st.title("Machine learning algorithm benchmark :robot_face::gear:")
 st.caption('''
@@ -348,5 +352,11 @@ if st.button(":white[Fit model]", type='secondary', use_container_width=True):
             st.caption(f"Precision-recall curve for each algorithm", help="A precision-recall curve is a plot of precision (y-axis) versus recall (x-axis) for different classification thresholds. It shows how changing the classification threshold affects the tradeoff between false positives and false negatives. A high area under the curve represents both high recall and high precision, indicating a model that returns accurate results for the majority of classes it selects.")
         toast.toast("Benchmark completed", icon="✅")
 st.header(":page_facing_up: PDF")
-with st.expander("PDF of full notebook containing the code and report"):
-    embed_pdf('ML_Benchmark_Daan_Michielsen.pdf')
+st.download_button(
+    label="Download PDF",
+    data=pdf_bytes,
+    file_name="ML_Benchmark_Daan_Michielsen.pdf",
+    mime="application/pdf"
+)
+with st.expander("View PDF"):
+    embed_pdf(pdf_path=pdf_path)
