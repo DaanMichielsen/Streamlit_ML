@@ -14,6 +14,7 @@ from io import StringIO, BytesIO
 from IPython.display import Image  
 import pydotplus
 from PIL import Image
+import base64
 
 def encode_data(df):
     label_encoder = LabelEncoder()
@@ -27,6 +28,11 @@ def encode_data(df):
     df_encoded['Gender_Male'] = df_encoded['Gender_Male'].astype(int)
     df_encoded['Age'] = (df_encoded['Age'] - df_encoded['Age'].min()) / (df_encoded['Age'].max() - df_encoded['Age'].min())
     return df_encoded
+def embed_pdf(pdf_path):
+    with open(pdf_path, "rb") as f:
+        base64_pdf = base64.b64encode(f.read()).decode('utf-8')
+    pdf_display = F'<embed src="data:application/pdf;base64,{base64_pdf}" width="700" height="1000" type="application/pdf">'
+    st.markdown(pdf_display, unsafe_allow_html=True)
 
 # st.set_page_config(layout='wide')
 st.title("Machine learning algorithm benchmark :robot_face::gear:")
@@ -341,3 +347,6 @@ if st.button(":white[Fit model]", type='secondary', use_container_width=True):
             st.pyplot(fig)
             st.caption(f"Precision-recall curve for each algorithm", help="A precision-recall curve is a plot of precision (y-axis) versus recall (x-axis) for different classification thresholds. It shows how changing the classification threshold affects the tradeoff between false positives and false negatives. A high area under the curve represents both high recall and high precision, indicating a model that returns accurate results for the majority of classes it selects.")
         toast.toast("Benchmark completed", icon="✅")
+st.header(":page_facing_up: PDF")
+with st.expander("PDF of full notebook containing the code and report"):
+    embed_pdf('ML_Benchmark_Daan_Michielsen.pdf')
