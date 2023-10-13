@@ -48,7 +48,7 @@ with c:
     records_shown = st.selectbox(label=f"**Shown records:**", options=records_shows_options, key="df")
 st.dataframe(df[:records_shown+1], height=None)
 st.markdown("These are the columns in the dataset(17):")
-st.markdown("- Age\n- Gender\n- Polyuria\n- Polydipsia\n- sudden weight loss\n- weakness\n- Polyphagia\n- Genital thrush\n- visual blurring\n- Itching\n- Irritability\n- delayed healing\n- partial paresis\n- muscle stiffness\n- Alopecia\n- Obesity\n- class")
+st.markdown("- Age\n- Gender\n- Polyuria\n- Polydipsia\n- sudden weight loss\n- weakness\n- Polyphagia\n- Genital thrush\n- visual blurring\n- Itching\n- Irritability\n- delayed healing\n- partial paresis\n- muscle stiffness\n- Alopecia\n- Obesity\n- class(What we want to predict)")
 
 st.header("The algorithms:robot_face:", divider='violet')
 st.markdown("I compared 1 baseline algorithm to 2 new algorithms I have not used before. For the **baseline** I chose the **decision tree algorithm**. For the other 2 algorithms I went with **SVC** and **AdaBoostClassifier**.")
@@ -94,7 +94,7 @@ with st.expander(f"X train({train_size} records)"):
     st.subheader("X train")
     st.dataframe(X_train)
 
-st.markdown("For the algorithms we can **configure some parameters** which impact the outcome of the model. For the **decision tree** we can change the **max_depth**, for the **SVC** algorithm we can select a **kernel**. For our application of binary classification the *linear kernel* will probably be the best. For the *adaptive boost* algorithm we can change *n estimator* which is the amount of times it will run the *base estimator*.")
+st.markdown("For the algorithms we can **configure some parameters** which impact the outcome of the model. For the **decision tree** we can change the **max_depth**, for the **SVC** algorithm we can select a **kernel**. For the *adaptive boost* algorithm we can change *n estimator* which is the amount of times it will run the *base estimator*.")
 st.markdown("### parameter tuning:gear:")
 col1, col2, col3 = st.columns(3)
 with col1:
