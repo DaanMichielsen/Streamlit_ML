@@ -358,5 +358,5 @@ st.download_button(
     file_name="ML_Benchmark_Daan_Michielsen.pdf",
     mime="application/pdf"
 )
-with st.expander("View PDF"):
+with st.expander("View PDF(Only works in FireFox for some reason :("):
     embed_pdf(pdf_path=pdf_path)
